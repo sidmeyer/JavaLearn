@@ -11,6 +11,8 @@
     <modules>
         <module>Spies</module>
         <module>Poland</module>
+        <module>Integrate</module>
+        <module>AsciiCharSequence</module>
     </modules>
 
 
