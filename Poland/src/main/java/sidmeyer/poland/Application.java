@@ -1,3 +1,5 @@
+package sidmeyer.poland;
+
 import sidmeyer.poland.RPNParserException;
 
 import java.util.Deque;
