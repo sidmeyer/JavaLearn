@@ -13,6 +13,7 @@
         <module>Poland</module>
         <module>Integrate</module>
         <module>AsciiCharSequence</module>
+        <module>CommentFilter</module>
     </modules>
 
 
