@@ -14,6 +14,7 @@
         <module>Integrate</module>
         <module>AsciiCharSequence</module>
         <module>CommentFilter</module>
+        <module>Patterns</module>
     </modules>
 
 
