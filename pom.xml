@@ -15,6 +15,7 @@
         <module>AsciiCharSequence</module>
         <module>CommentFilter</module>
         <module>Patterns</module>
+        <module>Classes</module>
     </modules>
 
 
