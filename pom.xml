@@ -16,6 +16,7 @@
         <module>CommentFilter</module>
         <module>Demo</module>
         <module>Robot</module>
+        <module>Patterns</module>
     </modules>
 
 
