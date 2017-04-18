@@ -18,6 +18,7 @@
         <module>Robot</module>
         <module>Patterns</module>
         <module>Classes</module>
+        <module>Post</module>
     </modules>
 
 
