@@ -19,6 +19,8 @@
         <module>Patterns</module>
         <module>Classes</module>
         <module>Post</module>
+        <module>Demo</module>
+        <module>PassportChecker</module>
     </modules>
 
 

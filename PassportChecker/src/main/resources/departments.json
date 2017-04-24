@@ -1,0 +1,69 @@
+{
+  "departments": [
+    {
+      "type": 1,
+      "name": "м. Дніпро (АНД), вул. Кожем’яки, 17",
+      "url": "https://igov.org.ua/api/service/flow/63?nID_Server=0&nID_Service=176&nID_SubjectOrganDepartment=23&sID_Public_SubjectOrganJoin=1376"
+    },
+    {
+      "type": 1,
+      "name": "м. Дніпро (міський), вул. Троїцька площа (вул. Красна площа), 2-А",
+      "url": "https://igov.org.ua/api/service/flow/63?nID_Server=0&nID_Service=176&nID_SubjectOrganDepartment=18&sID_Public_SubjectOrganJoin=1375"
+    },
+    {
+      "type": 2,
+      "name": "м. Дніпро (Новокодацький), вул. Курінна (вул. Аверіна), 57",
+      "url": "https://igov.org.ua/api/service/flow/DMS/getSlots?nID_Server=0&nID_Service_Private=611"
+    },
+    {
+      "type": 2,
+      "name": "м. Дніпро (обласний), вул. Поля, 1",
+      "url": "https://igov.org.ua/api/service/flow/DMS/getSlots?nID_Server=0&nID_Service_Private=609"
+    },
+    {
+      "type": 1,
+      "name": "м. Дніпро (Самарський), вул. Космонавтів, 4",
+      "url": "https://igov.org.ua/api/service/flow/63?nID_Server=0&nID_Service=176&nID_SubjectOrganDepartment=28&sID_Public_SubjectOrganJoin=1383"
+    },
+    {
+      "type": 1,
+      "name": "м. Дніпро (Соборний), вул. Шевченко, 7",
+      "url": "https://igov.org.ua/api/service/flow/63?nID_Server=0&nID_Service=176&nID_SubjectOrganDepartment=14&sID_Public_SubjectOrganJoin=1378"
+    },
+    {
+      "type": 1,
+      "name": "м. Дніпро (Центральний), вул. Князя Володимира Великого (вул. Плеханова), 34",
+      "url": "https://igov.org.ua/api/service/flow/63?nID_Server=0&nID_Service=176&nID_SubjectOrganDepartment=25&sID_Public_SubjectOrganJoin=1380"
+    },
+    {
+      "type": 1,
+      "name": "м. Дніпро (Чечелівський), вул. Робоча, 22а",
+      "url": "https://igov.org.ua/api/service/flow/63?nID_Server=0&nID_Service=176&nID_SubjectOrganDepartment=26&sID_Public_SubjectOrganJoin=1381"
+    },
+    {
+      "type": 2,
+      "name": "м. Дніпро (Шевченківський), пр. П.Орлика (пр. Ілліча), 3",
+      "url": "https://igov.org.ua/api/service/flow/DMS/getSlots?nID_Server=0&nID_Service_Private=613"
+    },
+    {
+      "type": 1,
+      "name": "м. Дніпро (Індустріальний), вул. Янтарна, 75а",
+      "url": "https://igov.org.ua/api/service/flow/63?nID_Server=0&nID_Service=176&nID_SubjectOrganDepartment=24&sID_Public_SubjectOrganJoin=1379"
+    },
+    {
+      "type": 1,
+      "name": "м Кам'янське (Дніпровський) пр. Перемоги, 63",
+      "url": "https://igov.org.ua/api/service/flow/63?nID_Server=0&nID_Service=176&nID_SubjectOrganDepartment=272&sID_Public_SubjectOrganJoin=3066"
+    },
+    {
+      "type": 1,
+      "name": "м Кам'янське (Південний) вул. Беспалова, 2А",
+      "url": "https://igov.org.ua/api/service/flow/63?nID_Server=0&nID_Service=176&nID_SubjectOrganDepartment=271&sID_Public_SubjectOrganJoin=3065"
+    },
+    {
+      "type": 1,
+      "name": "м. Кам'янське, вул. Манаєнкова (вул. Комунарна), 10-А",
+      "url": "https://igov.org.ua/api/service/flow/63?nID_Server=0&nID_Service=176&nID_SubjectOrganDepartment=20&sID_Public_SubjectOrganJoin=1398"
+    }
+  ]
+}
