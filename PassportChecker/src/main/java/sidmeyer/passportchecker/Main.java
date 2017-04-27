@@ -13,6 +13,8 @@ import javax.swing.*;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.*;
+import java.nio.charset.*;
 import java.util.ArrayList;
 //import java.util.HashMap;
 import java.util.List;
@@ -102,7 +104,8 @@ public class Main {
 
         JsonObject jsonObject;
         try {
-            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            //BufferedReader br = new BufferedReader(new FileReader(filePath));
+            BufferedReader br = Files.newBufferedReader(Paths.get(filePath), StandardCharsets.UTF_8);
             jsonObject = parser.parse(br).getAsJsonObject();
         } catch (Exception e) {
             return null;
