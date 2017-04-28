@@ -16,14 +16,15 @@ import java.net.URLConnection;
 import java.nio.file.*;
 import java.nio.charset.*;
 import java.util.ArrayList;
-//import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
 
     private static final Logger LOG = LogManager.getLogger("PassportChecker");
     private static List<Department> departments;
     private static String filePath = "./PassportChecker/src/main/resources/departments.json";
+
     private static final JsonParser parser = new JsonParser();
     private static int timeout = 240; // timeout in seconds
 
@@ -66,9 +67,18 @@ public class Main {
                     }
                 }
             } else if (department.getType().equals(Department.Type.TWO) && slotsJson.toString().length() != 2) {
-                slots.add(new Slot("CHECK MANUALLY", "CHECK MANUALLY"));
-                LOG.info("Slot added: " + slots.get(slots.size() - 1).getDate() + " " + slots.get(slots.size() - 1).getTime()
-                        + " at " + department.getName());
+                for (Map.Entry daySlots : slotsJson.entrySet()) {
+                    for (JsonElement daySlotJsonElement : (JsonArray) daySlots.getValue()) {
+                        slots.add(new Slot(daySlots.getKey().toString(), ((JsonObject) daySlotJsonElement).get("time").getAsString()));
+                        LOG.info("Slot added: " + slots.get(slots.size() - 1).getDate() + " " + slots.get(slots.size() - 1).getTime()
+                                + " at " + department.getName());
+                        new Thread() {
+                            public void run() {
+                                JOptionPane.showMessageDialog(null, "Free slot found!\n" + department.getName());
+                            }
+                        }.start();
+                    }
+                }
             } else {
                 LOG.debug("No free slots at " + department.getName());
             }
@@ -78,6 +88,18 @@ public class Main {
         return slots;
     }
 
+    /*
+    type 2 response:
+{
+  "2017-05-04": [
+    {
+      "date": "04.05.2017",
+      "t_length": 20,
+      "time": "14:20:00"
+    }
+  ]
+}
+     */
 
     public static JsonObject checkDepartment(Department department) {
         try {
@@ -104,10 +126,10 @@ public class Main {
 
         JsonObject jsonObject;
         try {
-            //BufferedReader br = new BufferedReader(new FileReader(filePath));
             BufferedReader br = Files.newBufferedReader(Paths.get(filePath), StandardCharsets.UTF_8);
             jsonObject = parser.parse(br).getAsJsonObject();
         } catch (Exception e) {
+            LOG.error("Error while parsing file.", e);
             return null;
         }
 
