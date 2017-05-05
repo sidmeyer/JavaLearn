@@ -62,7 +62,7 @@ public class Main {
 						Arrays.asList(
 								"This \"The Shadow over Innsmouth\" story is real masterpiece, Howard!"
 						)
-				) : "wrong mailService mailbox content (1)";
+				) : "wrong mailService mailbox content (1)" + mailBox.get("H.P. Lovecraft");
 
 		assert mailBox.get("Christopher Nolan").
 
@@ -105,81 +105,73 @@ public class Main {
 				equals(Arrays.asList(randomSalary)) : "wrong salaries mailbox content (3)";
 	}
 
+	public static interface Sendable<T> {
+		String getFrom();
+		String getTo();
+		T getContent();
+	}
 
-	public static class MailMessage {
-		String from, to, content;
+	public static class SimpleSendable<T> implements Sendable<T> {
+		final String from;
+		final String to;
+		final T content;
 
-		public MailMessage(String from, String to, String content) {
+		public SimpleSendable(String from, String to, T content) {
 			this.from = from;
 			this.to = to;
 			this.content = content;
 		}
 
+		@Override
 		public String getFrom() {
 			return from;
 		}
 
+		@Override
 		public String getTo() {
 			return to;
 		}
 
-		public String getContent() {
+		@Override
+		public T getContent() {
 			return content;
 		}
-
-		// implement here
 	}
 
-	public static class Salary {
-		String from, to;
-		int salary;
+	public static class MailMessage extends SimpleSendable<String> {
 
-		public Salary(String from, String to, int salary) {
-			this.from = from;
-			this.to = to;
-			this.salary = salary;
+		public MailMessage(String from, String to, String content) {
+			super(from, to, content);
 		}
-
-		public String getFrom() {
-			return from;
-		}
-
-		public String getTo() {
-			return to;
-		}
-
-		public int getSalary() {
-			return salary;
-		}
-
-		// implement here
 	}
 
-	public static class MailService<T> implements Consumer {
-//		private List<MailMessage> messages = new ArrayList<>();
-//		private List<Salary>
-		private Map<String, List<T>> mailBox = new HashMap<>();
-		//private Map<String, List<Integer>> salaries = new HashMap<>();
+	public static class Salary extends SimpleSendable<Integer> {
 
-		@Override
-		public <U extends MailMessage> void accept(U mailMessage) {
-			if (mailBox.containsKey(mailMessage.getTo())) {
-				mailBox.get(mailMessage.getTo()).add(mailMessage.getContent());
-			} else {
-				mailBox.put(mailMessage.getTo(), new ArrayList<>());
-				mailBox.get(mailMessage.getTo()).add(mailMessage.getContent());
+		public Salary(String from, String to, Integer content) {
+			super(from, to, content);
+		}
+	}
+
+	public static class MailService<T> implements Consumer<Sendable<T>> {
+
+		private Map<String, List<T>> mailBox = new HashMap<String, List<T>>() {
+			@Override
+			public List<T> get(Object key) {
+				return super.get(key) == null ? Collections.emptyList() : super.get(key);
 			}
-		}
+		};
 
 		@Override
-		public Consumer<MailMessage> andThen(Consumer<? super MailMessage> after) {
-			return null;
+		public void accept(Sendable<T> element) {
+			if (!mailBox.containsKey(element.getTo())) {
+				mailBox.put(element.getTo(), new ArrayList<T>());
+			}
+
+			mailBox.get(element.getTo()).add(element.getContent());
 		}
 
-
-		public Map<String,List<T>> getMailBox() {
+		public Map<String, List<T>> getMailBox() {
 			return mailBox;
 		}
-		// implement here
 	}
 }
