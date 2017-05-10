@@ -5,6 +5,10 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+import sidmeyer.stepikweb.authorization.accounts.AccountService;
+import sidmeyer.stepikweb.authorization.servlets.SignInServlet;
+import sidmeyer.stepikweb.authorization.servlets.SignUpServlet;
 
 /**
  * Ex. 2.3.16
@@ -12,13 +16,12 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
  */
 public class Main {
     public static void main(String[] args) throws Exception{
-
-
+        AccountService accountService = new AccountService();
 
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        //context.addServlet
-        //context.addServlet
+        context.addServlet(new ServletHolder(new SignInServlet(accountService)), "/signin");
+        context.addServlet(new ServletHolder(new SignUpServlet(accountService)), "/signup");
 
 
         ResourceHandler resourceHandler = new ResourceHandler();
