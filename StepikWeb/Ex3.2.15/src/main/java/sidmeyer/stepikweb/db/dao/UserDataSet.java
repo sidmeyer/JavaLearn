@@ -1,4 +1,4 @@
-package sidmeyer.stepikweb.db.main;
+package sidmeyer.stepikweb.db.dao;
 
 import javax.persistence.*;
 
@@ -37,6 +37,10 @@ public class UserDataSet {
         this.signUpDate = signUpDate;
     }
 
+    public UserDataSet() {
+
+    }
+
     public long getId() {
         return id;
     }
@@ -59,6 +63,28 @@ public class UserDataSet {
 
     public String getSignUpDate() {
         return signUpDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserDataSet that = (UserDataSet) o;
+
+        if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        return signUpDate != null ? signUpDate.equals(that.signUpDate) : that.signUpDate == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName != null ? firstName.hashCode() : 0;
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (signUpDate != null ? signUpDate.hashCode() : 0);
+        return result;
     }
 }
 

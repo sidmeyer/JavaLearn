@@ -3,10 +3,11 @@ package sidmeyer.stepikweb.db.main;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.annotations.SourceType;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import sidmeyer.stepikweb.db.dao.UserDataSet;
+import sidmeyer.stepikweb.db.dao.UsersDao;
 
 /**
  * Created by stas on 15.05.17.
@@ -20,7 +21,7 @@ public class Hibernate {
         cfg.setProperty("hibernate.connection.username", "root");
         cfg.setProperty("hibernate.connection.password", "root");
         cfg.setProperty("hibernate.show_sql", "true");
-        cfg.setProperty("hibernate.hbm2dll.auto", "update");
+        cfg.setProperty("hibernate.hbm2dll.auto", "validate");
 
         cfg.addAnnotatedClass(UserDataSet.class);
 
@@ -29,14 +30,32 @@ public class Hibernate {
         ServiceRegistry serviceRegistry = ssrb.build();
         SessionFactory sessionFactory = cfg.buildSessionFactory(serviceRegistry);
 
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
+//        Session session = sessionFactory.openSession();
+//        Transaction transaction = session.beginTransaction();
+//
+//        System.out.append(transaction.getLocalStatus().toString());
+//
+//        session.close();
 
-        System.out.append(transaction.getLocalStatus().toString());
 
-        session.close();
+        UsersDao usersDao = new UsersDao(sessionFactory);
+
+        UserDataSet user1 = usersDao.getById(1);
+        //printUserDataSet(user1);
+
+        UserDataSet newUser = new UserDataSet("Tim", "Ericsson", "te@example.com", false, "2017-05-18");
+        //usersDao.save(newUser);
+        //UserDataSet user2 = usersDao.getByEmail("te@example.com");
+        //printUserDataSet(user2);
+
+        usersDao.delete(new UserDataSet("Tim", "Ericsson", "te@example.com", false, "2017-05-18"));
+
         sessionFactory.close();
+    }
 
+    private static void printUserDataSet(UserDataSet userDataSet) {
+        System.out.printf("id: %d\nfirstName: %s\nlastname: %s\nemail: %s\nconfirmed: %s\nsignUpDate: %s\n",
+                userDataSet.getId(), userDataSet.getFirstName(), userDataSet.getLastName(), userDataSet.getEmail(), userDataSet.isConfirmed(), userDataSet.getSignUpDate());
 
     }
 
