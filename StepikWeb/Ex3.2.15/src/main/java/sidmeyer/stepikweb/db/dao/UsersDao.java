@@ -6,6 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.List;
+
 /**
  * Created by stas on 17.05.17.
  */
@@ -39,9 +41,16 @@ public class UsersDao {
                 //.list().get(0);
     }
 
-    public void delete(UserDataSet userDataSet) {
+    public List<UserDataSet> getByRegisterDateRange(String dateFrom, String dateTo) {
         Session session = sessionFactory.openSession();
-        session.delete(userDataSet);
-        //return (UserDataSet) session.delete(id);
+        Criteria criteria = session.createCriteria(UserDataSet.class);
+        criteria.add(Restrictions.between("signUpDate", dateFrom, dateTo));
+        return (List<UserDataSet>) criteria.list();
     }
+
+//    public void delete(UserDataSet userDataSet) {
+//        Session session = sessionFactory.openSession();
+//        session.delete(userDataSet);
+//        //return (UserDataSet) session.delete(id);
+//    }
 }

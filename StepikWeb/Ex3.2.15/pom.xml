@@ -11,6 +11,12 @@
 
     <artifactId>stepik-web-3.2.15</artifactId>
 
+    <properties>
+        <com.h2database.h2.version>1.4.190</com.h2database.h2.version>
+        <mysql.mysql-connector-java.version>5.1.6</mysql.mysql-connector-java.version>
+        <org.hibernate.hibernate-core.version>4.3.11.Final</org.hibernate.hibernate-core.version>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -71,6 +77,11 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>4.3.11.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.190</version>
         </dependency>
     </dependencies>
 
