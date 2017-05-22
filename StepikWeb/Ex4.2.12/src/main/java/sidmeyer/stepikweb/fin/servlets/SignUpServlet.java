@@ -21,8 +21,11 @@ public class SignUpServlet extends HttpServlet {
         try {
             String userName = request.getParameter("login");
             String password = request.getParameter("password");
-            if(accountService.getUserByUserName(userName) == null) {
+            if(null == accountService.getUserByUserName(userName)) {
                 accountService.addUser(userName, password);
+                response.getWriter().write("New user registered: " + userName);
+            } else {
+                response.getWriter().write("User '" + userName + "' already registered");
             }
         } catch (Exception e) {
             e.printStackTrace();
