@@ -8,7 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.internal.SessionFactoryImpl;
 import org.hibernate.service.ServiceRegistry;
 import sidmeyer.stepikweb.fin.dbService.dao.UsersDao;
-import sidmeyer.stepikweb.fin.dbService.datasets.UsersDataSet;
+import sidmeyer.stepikweb.fin.dbService.datasets.User;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -36,22 +36,22 @@ public class DbServiceImpl implements DbService {
         session.close();
     }
 
-    public UsersDataSet getById(final long userId) {
+    public User getById(final long userId) {
         Session session = sessionFactory.openSession();
         UsersDao usersDao = new UsersDao(session);
-        UsersDataSet usersDataSet = usersDao.getById(userId);
-        //UsersDataSet usersDataSet0 = (UsersDataSet) session.load("id", userId);
+        User user = usersDao.getById(userId);
+        //User usersDataSet0 = (User) session.load("id", userId);
         session.close();
-        return usersDataSet;
+        return user;
     }
 
-    public UsersDataSet getByUserName(final String userName) {
+    public User getByUserName(final String userName) {
         Session session = sessionFactory.openSession();
         UsersDao usersDao = new UsersDao(session);
-        UsersDataSet usersDataSet = usersDao.getByUserName(userName);
-        //UsersDataSet usersDataSet0 = (UsersDataSet) session.load("id", userId);
+        User user = usersDao.getByUserName(userName);
+        //User usersDataSet0 = (User) session.load("id", userId);
         session.close();
-        return usersDataSet;
+        return user;
     }
 
     public void printConnectInfo() {
@@ -69,7 +69,7 @@ public class DbServiceImpl implements DbService {
 
     private Configuration getH2Configuration() {
         Configuration cfg = new Configuration();
-        cfg.addAnnotatedClass(UsersDataSet.class);
+        cfg.addAnnotatedClass(User.class);
 
         cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         cfg.setProperty("hibernate.connection.driver_class", "org.h2.Driver");

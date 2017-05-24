@@ -1,7 +1,7 @@
 package sidmeyer.stepikweb.fin.servlets;
 
 import sidmeyer.stepikweb.fin.accounts.AccountService;
-import sidmeyer.stepikweb.fin.dbService.datasets.UsersDataSet;
+import sidmeyer.stepikweb.fin.dbService.datasets.User;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +19,8 @@ public class SignInServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
         try {
-            UsersDataSet usersDataSet = accountService.getUserByUserName(request.getParameter("login"));
-            if(null != usersDataSet && usersDataSet.getPassword().equals(request.getParameter("password"))) {
+            User user = accountService.getUserByUserName(request.getParameter("login"));
+            if(null != user && user.getPassword().equals(request.getParameter("password"))) {
                 response.setContentType("text/html;charset=utf-8");
                 response.setStatus(HttpServletResponse.SC_OK);
                 response.getWriter().write("Authorized: " + request.getParameter("login"));

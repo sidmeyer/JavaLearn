@@ -3,7 +3,7 @@ package sidmeyer.stepikweb.fin.dbService.dao;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
-import sidmeyer.stepikweb.fin.dbService.datasets.UsersDataSet;
+import sidmeyer.stepikweb.fin.dbService.datasets.User;
 
 /**
  * Created by stas on 19.05.17.
@@ -16,16 +16,16 @@ public class UsersDao {
     }
 
     public long addUser(final String userName, final String password) {
-        return (long) session.save(new UsersDataSet(userName, password));
+        return (long) session.save(new User(userName, password));
     }
 
-    public UsersDataSet getById(final long userId) {
-        return (UsersDataSet) session.load(UsersDataSet.class, userId);
+    public User getById(final long userId) {
+        return (User) session.load(User.class, userId);
     }
 
-    public UsersDataSet getByUserName(final String userName) {
-        Criteria criteria = session.createCriteria(UsersDataSet.class);
+    public User getByUserName(final String userName) {
+        Criteria criteria = session.createCriteria(User.class);
         criteria.add(Restrictions.eq("userName", userName));
-        return (UsersDataSet) criteria.uniqueResult();
+        return (User) criteria.uniqueResult();
     }
 }

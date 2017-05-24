@@ -1,6 +1,6 @@
 package sidmeyer.stepikweb.fin.dbService;
 
-import sidmeyer.stepikweb.fin.dbService.datasets.UsersDataSet;
+import sidmeyer.stepikweb.fin.dbService.datasets.User;
 
 /**
  * Created by Stas on 21.05.2017.
@@ -8,5 +8,5 @@ import sidmeyer.stepikweb.fin.dbService.datasets.UsersDataSet;
 public interface DbService {
 	void addUser(String userName, String password);
 
-	UsersDataSet getByUserName(String userName);
+	User getByUserName(String userName);
 }

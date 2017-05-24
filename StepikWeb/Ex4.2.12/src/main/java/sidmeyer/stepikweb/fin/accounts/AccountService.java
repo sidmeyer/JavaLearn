@@ -1,7 +1,7 @@
 package sidmeyer.stepikweb.fin.accounts;
 
 import sidmeyer.stepikweb.fin.dbService.DbService;
-import sidmeyer.stepikweb.fin.dbService.datasets.UsersDataSet;
+import sidmeyer.stepikweb.fin.dbService.datasets.User;
 
 /**
  * Created by stas on 21.05.17.
@@ -17,8 +17,8 @@ public class AccountService {
         dbService.addUser(userName, password);
     }
 
-    public UsersDataSet getUserByUserName(String userName) {
-        UsersDataSet usersDataSet = dbService.getByUserName(userName);
-        return usersDataSet;
+    public User getUserByUserName(String userName) {
+        User user = dbService.getByUserName(userName);
+        return user;
     }
 }

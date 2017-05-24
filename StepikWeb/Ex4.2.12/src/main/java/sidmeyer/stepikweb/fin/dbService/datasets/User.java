@@ -2,13 +2,14 @@ package sidmeyer.stepikweb.fin.dbService.datasets;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by stas on 19.05.17.
  */
 @Entity
 @Table(name = "Users")
-public class UsersDataSet implements Serializable {
+public class User implements Serializable {
     @Id
     @Column(name = "UserId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,13 +21,20 @@ public class UsersDataSet implements Serializable {
     @Column(name = "Password")
     private String password;
 
-    public UsersDataSet(String userName, String password) {
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+//    private List<ChatMessage> messages;
+
+    public User(String userName, String password) {
         this.userId = -1;
         this.userName = userName;
         this.password = password;
     }
 
-    public UsersDataSet() {
+    public User() {
+    }
+
+    public long getUserId() {
+        return userId;
     }
 
     public String getUserName() {
@@ -37,7 +45,5 @@ public class UsersDataSet implements Serializable {
         return password;
     }
 
-    public long getUserId() {
-        return userId;
-    }
+
 }
