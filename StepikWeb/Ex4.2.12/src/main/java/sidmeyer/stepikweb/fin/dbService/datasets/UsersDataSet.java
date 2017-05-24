@@ -36,4 +36,8 @@ public class UsersDataSet implements Serializable {
     public String getPassword() {
         return password;
     }
+
+    public long getUserId() {
+        return userId;
+    }
 }

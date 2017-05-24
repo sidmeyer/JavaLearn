@@ -11,6 +11,7 @@ import sidmeyer.stepikweb.fin.dbService.DbService;
 import sidmeyer.stepikweb.fin.dbService.DbServiceImpl;
 import sidmeyer.stepikweb.fin.servlets.SignInServlet;
 import sidmeyer.stepikweb.fin.servlets.SignUpServlet;
+import sidmeyer.stepikweb.fin.servlets.WebSocketChatServlet;
 
 /**
  * Created by stas on 19.05.17.
@@ -34,6 +35,7 @@ public class Main {
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(new SignInServlet(accountService)), "/signin");
         context.addServlet(new ServletHolder(new SignUpServlet(accountService)), "/signup");
+        context.addServlet(new ServletHolder(new WebSocketChatServlet()), "/chat");
 
 
         ResourceHandler resourceHandler = new ResourceHandler();
