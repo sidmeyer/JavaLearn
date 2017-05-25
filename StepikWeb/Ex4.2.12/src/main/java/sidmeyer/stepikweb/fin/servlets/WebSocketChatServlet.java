@@ -12,14 +12,14 @@ public class WebSocketChatServlet extends WebSocketServlet {
     private static final long LOGOUT_TIME = 10 * 60 * 1000;
     private final ChatService chatService;
 
-    public WebSocketChatServlet() {
-        this.chatService = new ChatService();
+    public WebSocketChatServlet(ChatService chatService) {
+        this.chatService = chatService;
     }
 
 
     @Override
     public void configure(WebSocketServletFactory webSocketServletFactory) {
         webSocketServletFactory.getPolicy().setIdleTimeout(LOGOUT_TIME);
-        webSocketServletFactory.setCreator((request, response) -> new ChatWebSocket(chatService));
+        webSocketServletFactory.setCreator((req, resp) -> new ChatWebSocket(chatService));
     }
 }

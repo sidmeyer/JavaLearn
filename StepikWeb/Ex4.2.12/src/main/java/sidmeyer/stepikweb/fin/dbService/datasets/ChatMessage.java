@@ -1,36 +1,34 @@
 package sidmeyer.stepikweb.fin.dbService.datasets;
 
-import sidmeyer.stepikweb.fin.dbService.datasets.User;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
-/**
- * Created by stas on 24.05.17.
- */
 @Entity
 @Table(name = "Messages")
-public class ChatMessage {
+public class ChatMessage implements Serializable {
+
+    private static final long serialVersionUID = -5170875020617735653L;
 
     @Id
     @Column(name = "MessageId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final long messageId;
+    private long messageId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UserId")
-    private final User user;
+    private User user;
 
     @Column(name = "Message")
-    private final String message;
+    private String message;
 
-    public ChatMessage(long messageId, User user, String message) {
+    public ChatMessage(User user, String message) {
         this.messageId = messageId;
         this.user = user;
         this.message = message;
     }
 
-//    public ChatMessage() {
-//    }
+    public ChatMessage() {
+    }
 
     public long getMessageId() {
         return messageId;

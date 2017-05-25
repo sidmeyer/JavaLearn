@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by stas on 19.05.17.
- */
 @Entity
 @Table(name = "Users")
 public class User implements Serializable {
+
+    private static final long serialVersionUID = -5170875020617735652L;
+
     @Id
     @Column(name = "UserId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +21,8 @@ public class User implements Serializable {
     @Column(name = "Password")
     private String password;
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//    private List<ChatMessage> messages;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<ChatMessage> messages;
 
     public User(String userName, String password) {
         this.userId = -1;

@@ -15,6 +15,7 @@
         <com.h2database.h2.version>1.4.190</com.h2database.h2.version>
         <mysql.mysql-connector-java.version>5.1.6</mysql.mysql-connector-java.version>
         <org.hibernate.hibernate-core.version>4.3.11.Final</org.hibernate.hibernate-core.version>
+        <org.eclipse.jetty.version>9.3.0.M0</org.eclipse.jetty.version>
     </properties>
 
     <build>
@@ -51,27 +52,27 @@
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
-            <version>9.4.5.v20170502</version>
+            <version>${org.eclipse.jetty.version}</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
-            <version>9.4.5.v20170502</version>
+            <version>${org.eclipse.jetty.version}</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
-            <version>9.4.5.v20170502</version>
+            <version>${org.eclipse.jetty.version}</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty.websocket</groupId>
             <artifactId>websocket-servlet</artifactId>
-            <version>9.3.0.M0</version>
+            <version>${org.eclipse.jetty.version}</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty.websocket</groupId>
             <artifactId>websocket-server</artifactId>
-            <version>9.3.0.M0</version>
+            <version>${org.eclipse.jetty.version}</version>
         </dependency>
         <dependency>
             <groupId>org.freemarker</groupId>
@@ -94,5 +95,6 @@
             <version>1.4.190</version>
         </dependency>
     </dependencies>
+
 
 </project>

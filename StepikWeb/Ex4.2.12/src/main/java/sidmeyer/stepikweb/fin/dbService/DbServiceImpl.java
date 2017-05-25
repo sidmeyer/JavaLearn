@@ -7,7 +7,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.internal.SessionFactoryImpl;
 import org.hibernate.service.ServiceRegistry;
+import sidmeyer.stepikweb.fin.dbService.dao.MessagesDao;
 import sidmeyer.stepikweb.fin.dbService.dao.UsersDao;
+import sidmeyer.stepikweb.fin.dbService.datasets.ChatMessage;
 import sidmeyer.stepikweb.fin.dbService.datasets.User;
 
 import java.sql.Connection;
@@ -54,6 +56,17 @@ public class DbServiceImpl implements DbService {
         return user;
     }
 
+    public void addMessage(final User user, final String message) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        MessagesDao messagesDao = new MessagesDao(session);
+        messagesDao.addMessage(user, message);
+//        UsersDao usersDao = new UsersDao(session);
+//        usersDao.addUser(userName, password);
+        transaction.commit();
+        session.close();
+    }
+
     public void printConnectInfo() {
         try {
             SessionFactoryImpl sessionFactoryImpl = (SessionFactoryImpl) sessionFactory;
@@ -70,6 +83,7 @@ public class DbServiceImpl implements DbService {
     private Configuration getH2Configuration() {
         Configuration cfg = new Configuration();
         cfg.addAnnotatedClass(User.class);
+        cfg.addAnnotatedClass(ChatMessage.class);
 
         cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         cfg.setProperty("hibernate.connection.driver_class", "org.h2.Driver");

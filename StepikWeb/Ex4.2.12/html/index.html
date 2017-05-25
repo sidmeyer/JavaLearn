@@ -3,16 +3,43 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Ex4.2.12</title>
-</head>
-<body>
-<h1>Registration form</h1>
+    <script type="text/javascript">
+        var ws;
 
-<form action="/signup" method="POST">
-    Login: <input type="text" name="login">
+        function init() {
+            ws = new WebSocket("ws://localhost:8080/chat");
+            ws.onopen = function (event) {
+            }
+            ws.onmessage = function (event) {
+                var $textarea = document.getElementById("messages");
+                $textarea.value = $textarea.value + event.data + "\n";
+            }
+            ws.onclose = function (event) {
+            }
+        };
+
+        function sendMessage() {
+            var messageField = document.getElementById("message");
+            var userNameField = document.getElementById("username");
+            var message = userNameField.value + ":" + messageField.value;
+            ws.send(message);
+            messageField.value = '';
+        }
+    </script>
+</head>
+<body onload="init();">
+    <h1>Chat</h1>
+
+    <input id="username" value="anonymous"/>
     <br>
-    Password: <input type="password" name="password">
-    <br>
-    <input type="submit" value="Sign up">
-</form>
+    <div id="chatbox">
+        <textarea id="messages" rows="20" cols="50" readonly="readonly"></textarea>
+    </div>
+
+    <form name="message" action="">
+        <input name="usermsg" type="text" id="message" size="40">
+        <input type="button" name="submitmsg" value="Send" onclick="sendMessage();">
+    </form>
+
 </body>
 </html>
