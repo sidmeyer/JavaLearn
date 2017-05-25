@@ -31,7 +31,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Server server = getServer(accountService);
+        Server server = getServer();
 
         //test
         dbService.addUser("Man", "parol");
@@ -42,7 +42,7 @@ public class Main {
         server.join();
     }
 
-    private static Server getServer(AccountService accountService) {
+    private static Server getServer() {
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(new SignInServlet(accountService)), "/signin");
         context.addServlet(new ServletHolder(new SignUpServlet(accountService)), "/signup");

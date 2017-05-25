@@ -26,22 +26,25 @@ public class ChatWebSocket {
 
     @OnWebSocketConnect
     public void onOpen(Session session) {
-        chatService.add(this);
         this.session = session;
+        chatService.add(this);
     }
 
     @OnWebSocketMessage
     public void onMessage(String data) {
-        try {
             chatService.addMessage(new ChatMessage(Main.staticTestUser, data));
-            session.getRemote().sendString("you wrote: " + data);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @OnWebSocketClose
     public void onClose(int statusCode, String reason) {
 
+    }
+
+    public void sendMessage(String message) {
+        try {
+            session.getRemote().sendString("your message: " + message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

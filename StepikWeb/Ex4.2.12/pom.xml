@@ -40,7 +40,7 @@
                     <appendAssemblyId>false</appendAssemblyId>
                     <archive>
                         <manifest>
-                            <mainClass>sidmeyer.stepikweb.db.main.Main</mainClass>
+                            <mainClass>sidmeyer.stepikweb.fin.main.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
