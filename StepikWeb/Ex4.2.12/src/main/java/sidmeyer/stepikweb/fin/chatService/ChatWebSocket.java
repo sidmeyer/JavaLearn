@@ -6,7 +6,6 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import sidmeyer.stepikweb.fin.dbService.datasets.ChatMessage;
-import sidmeyer.stepikweb.fin.dbService.datasets.User;
 import sidmeyer.stepikweb.fin.main.Main;
 
 import java.io.IOException;
@@ -31,8 +30,11 @@ public class ChatWebSocket {
     }
 
     @OnWebSocketMessage
-    public void onMessage(String data) {
-            chatService.addMessage(new ChatMessage(Main.staticTestUser, data));
+    public void onMessage(Session session, String data) {
+        if (data.contains(":")) {
+            java.util.logging.Logger.getGlobal().info("Username: " + data.substring(0,data.indexOf(":")) + ", password: " + data.substring(data.indexOf(":") + 1,data.length()));
+        }
+        chatService.addMessage(new ChatMessage(Main.staticTestUser, data + ". remoteAddress: " + session.getRemoteAddress()));
     }
 
     @OnWebSocketClose
@@ -42,7 +44,7 @@ public class ChatWebSocket {
 
     public void sendMessage(String message) {
         try {
-            session.getRemote().sendString("your message: " + message);
+            session.getRemote().sendString(message);
         } catch (IOException e) {
             e.printStackTrace();
         }

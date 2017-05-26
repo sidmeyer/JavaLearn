@@ -23,7 +23,14 @@
             var userNameField = document.getElementById("username");
             var message = userNameField.value + ":" + messageField.value;
             ws.send(message);
+            //ws.send({"message":"mgs","user":"userok"});
             messageField.value = '';
+        }
+
+        function sendCredentials() {
+            var userName = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            ws.send(userName + ":" + password);
         }
     </script>
 </head>
@@ -31,6 +38,8 @@
     <h1>Chat</h1>
 
     <input id="username" value="anonymous"/>
+    <input id="password" type="password"/>
+    <input type="button" value="Login" onclick="sendCredentials();">
     <br>
     <div id="chatbox">
         <textarea id="messages" rows="20" cols="50" readonly="readonly"></textarea>

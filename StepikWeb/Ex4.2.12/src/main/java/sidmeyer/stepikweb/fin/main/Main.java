@@ -21,8 +21,6 @@ import sidmeyer.stepikweb.fin.servlets.WebSocketChatServlet;
  */
 public class Main {
 
-
-
     private static DbService dbService = new DbServiceImpl();
     private static AccountService accountService = new AccountService(dbService);
     private static ChatService chatService = new ChatServiceImpl(dbService);
@@ -33,9 +31,8 @@ public class Main {
 
         Server server = getServer();
 
-        //test
-        dbService.addUser("Man", "parol");
-        staticTestUser = dbService.getByUserName("Man");
+        dbService.addUser("Man", "parol"); //test
+        staticTestUser = dbService.getByUserName("Man"); //test
 
         server.start();
         java.util.logging.Logger.getGlobal().info("Server started");
@@ -47,7 +44,6 @@ public class Main {
         context.addServlet(new ServletHolder(new SignInServlet(accountService)), "/signin");
         context.addServlet(new ServletHolder(new SignUpServlet(accountService)), "/signup");
         context.addServlet(new ServletHolder(new WebSocketChatServlet(chatService)), "/chat");
-
 
         ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setResourceBase("html");
